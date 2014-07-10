@@ -69,6 +69,7 @@ public class Calculator {
         labelNumber2 = new JLabel("Число 2");
         labelResult = new JLabel("Результат");
     }
+    
     private void createTextFields() {
         fieldNumber1 = new JTextField(15);
         
@@ -78,6 +79,7 @@ public class Calculator {
         fieldResult.setEditable(false);
         fieldResult.setFocusable(false);
     }
+    
     private void createPanel() {
         
         panel1 = new JPanel(new FlowLayout(FlowLayout.RIGHT));
