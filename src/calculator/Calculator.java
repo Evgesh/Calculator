@@ -3,24 +3,22 @@
 package calculator;
 
 import com.jtattoo.plaf.aero.AeroLookAndFeel;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
-import javax.swing.plaf.basic.BasicOptionPaneUI;
 import listeners.ButtonListener;
+import listeners.TextFieldListener;
 
 
 public class Calculator {
@@ -34,11 +32,11 @@ public class Calculator {
     private JButton subtractButton;
     private JButton divadeButton;
     private JButton multiplyButton;
-    private JButton resultButton;
+    private JButton resetButton;
     
     private JFrame myFrame;
     
-    private ButtonListener listener;
+    public static final String INITIAL_VALUE = "Введите число";
 
     public static void main(String[] args) {
         try {
@@ -50,9 +48,10 @@ public class Calculator {
         JFrame.setDefaultLookAndFeelDecorated(true);
         
         Calculator calculator = new Calculator();
-        calculator.createButton();
+        
         calculator.createLabels();
         calculator.createTextFields();
+        calculator.createButton();
         calculator.createPanel();
         calculator.createFrame();
     }
@@ -62,7 +61,9 @@ public class Calculator {
         subtractButton = new JButton("Вычитание");
         divadeButton = new JButton("Деление");
         multiplyButton = new JButton("Умножение");
-        resultButton = new JButton("Результат");
+        resetButton = new JButton("Сброс");
+        
+        addButtonListener();
     }
     private void createLabels() {
         labelNumber1 = new JLabel("Число 1");
@@ -71,13 +72,16 @@ public class Calculator {
     }
     
     private void createTextFields() {
-        fieldNumber1 = new JTextField(15);
-        
-        fieldNumber2 = new JTextField(15);
+        fieldNumber1 = new JTextField(INITIAL_VALUE, 15);
+        fieldNumber1.setForeground(Color.GRAY);
+        fieldNumber2 = new JTextField(INITIAL_VALUE, 15);
+        fieldNumber2.setForeground(Color.GRAY);
         
         fieldResult = new JTextField(15);
         fieldResult.setEditable(false);
         fieldResult.setFocusable(false);
+        
+        addTextFieldListener();
     }
     
     private void createPanel() {
@@ -97,25 +101,19 @@ public class Calculator {
         panel3.add(labelResult);
         panel3.add(fieldResult);
         
-        listener = new ButtonListener(panel4);
         panel4 = new JPanel(new GridLayout(2, 2, 1, 1));
         panel4.add(addButton);
-        addButton.addActionListener(listener);
         panel4.add(subtractButton);
-        subtractButton.addActionListener(listener);
         panel4.add(divadeButton);
-        divadeButton.addActionListener(listener);
-        panel4.add(multiplyButton);
-        multiplyButton.addActionListener(listener);
-        
+        panel4.add(multiplyButton);        
         
         panel5 = new JPanel(new GridLayout(1, 2, 1, 1));
-        panel5.add(resultButton);
+        panel5.add(resetButton);
         
     }
     private void createFrame() {
         
-        JFrame frame = new JFrame("Калькулятор");
+        JFrame frame = new JFrame("Calculator");
         frame.setIconImage(new ImageIcon("c:\\MyJava\\apple.png").getImage());
         frame.setSize(250, 300);
         GridLayout gl1 = new GridLayout(5, 1, 3, 3);
@@ -133,5 +131,20 @@ public class Calculator {
         
         
         frame.setVisible(true);
+    }
+    
+    private void addButtonListener(){
+        ButtonListener buttonListener = new ButtonListener(fieldNumber1, fieldNumber2, fieldResult);
+        
+        subtractButton.addActionListener(buttonListener);
+        addButton.addActionListener(buttonListener);
+        divadeButton.addActionListener(buttonListener);
+        multiplyButton.addActionListener(buttonListener);
+        resetButton.addActionListener(buttonListener);
+    }
+    
+    private void addTextFieldListener(){
+        fieldNumber1.addFocusListener(new TextFieldListener(fieldNumber1));
+        fieldNumber2.addFocusListener(new TextFieldListener(fieldNumber2));
     }
 }
