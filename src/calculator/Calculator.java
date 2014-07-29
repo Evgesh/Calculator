@@ -28,7 +28,8 @@ public class Calculator {
     private JButton subtractButton;
     private JButton divadeButton;
     private JButton multiplyButton;
-    private JButton resetButton;    
+    private JButton resetButton;  
+    private JButton saveResults; //not ready
     private JFrame myFrame;
     
     public static final String INITIAL_VALUE = "Введите число";
@@ -104,7 +105,7 @@ public class Calculator {
         panel4.add(divadeButton);
         panel4.add(multiplyButton);        
         
-        panel5 = new JPanel(new GridLayout(1, 2, 1, 1));
+        panel5 = new JPanel(new GridLayout(2, 2, 1, 1));
         panel5.add(resetButton);
         
     }
