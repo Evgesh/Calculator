@@ -1,4 +1,3 @@
-
 package listeners;
 
 import calculator.Operations;
@@ -43,8 +42,7 @@ public class ButtonListener implements ActionListener{
             clearFields();
             return;
         }
-        
-        
+                
         if(button.getActionCommand().equals("Сложение")){
             fieldResult.setText(String.valueOf(Operations.add(number1, number2)));
         }else if(button.getActionCommand().equals("Вычитание")){
@@ -65,9 +63,9 @@ public class ButtonListener implements ActionListener{
     }
     private void clearFields(){
         fieldNumber1.setText(calculator.Calculator.INITIAL_VALUE);
-            fieldNumber1.setForeground(Color.GRAY);
-            fieldNumber2.setText(calculator.Calculator.INITIAL_VALUE);
-            fieldNumber2.setForeground(Color.GRAY);
-            fieldResult.setText("");
+        fieldNumber1.setForeground(Color.GRAY);
+        fieldNumber2.setText(calculator.Calculator.INITIAL_VALUE);
+        fieldNumber2.setForeground(Color.GRAY);
+        fieldResult.setText("");
     }
 }

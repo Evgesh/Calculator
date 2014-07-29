@@ -1,5 +1,3 @@
-
-
 package calculator;
 
 import com.jtattoo.plaf.aero.AeroLookAndFeel;
@@ -24,16 +22,13 @@ import listeners.TextFieldListener;
 public class Calculator {
     
     private JPanel panel1, panel2, panel3, panel4, panel5;
-        
     private JLabel labelNumber1, labelNumber2, labelResult;
     private JTextField fieldNumber1, fieldNumber2, fieldResult;
-    
     private JButton addButton;
     private JButton subtractButton;
     private JButton divadeButton;
     private JButton multiplyButton;
-    private JButton resetButton;
-    
+    private JButton resetButton;    
     private JFrame myFrame;
     
     public static final String INITIAL_VALUE = "Введите число";
@@ -55,6 +50,7 @@ public class Calculator {
         calculator.createPanel();
         calculator.createFrame();
     }
+    
     private void createButton() {
         
         addButton = new JButton("Сложение");
@@ -65,6 +61,7 @@ public class Calculator {
         
         addButtonListener();
     }
+    
     private void createLabels() {
         labelNumber1 = new JLabel("Число 1");
         labelNumber2 = new JLabel("Число 2");
@@ -111,6 +108,7 @@ public class Calculator {
         panel5.add(resetButton);
         
     }
+    
     private void createFrame() {
         
         JFrame frame = new JFrame("Calculator");
