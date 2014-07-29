@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
@@ -33,6 +34,7 @@ public class Calculator {
     private JFrame myFrame;
     
     public static final String INITIAL_VALUE = "Введите число";
+    private Image icon = new ImageIcon(getClass().getResource("/images/apple.png")).getImage();
 
     public static void main(String[] args) {
         try {
@@ -113,7 +115,7 @@ public class Calculator {
     private void createFrame() {
         
         JFrame frame = new JFrame("Calculator");
-        frame.setIconImage(new ImageIcon("c:\\MyJava\\apple.png").getImage());
+        frame.setIconImage(icon);
         frame.setSize(250, 300);
         GridLayout gl1 = new GridLayout(5, 1, 3, 3);
         frame.setLayout(gl1);
